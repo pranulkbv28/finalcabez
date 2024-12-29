@@ -18,6 +18,8 @@ import PoppinsSemiBold from "@/assets/fonts/Poppins-SemiBold.otf";
 import PoppinsMedium from "@/assets/fonts/Poppins-Medium.otf";
 
 import { useColorScheme } from "@/components/useColorScheme";
+import { Provider } from "react-redux";
+import store from "@/store/store";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -45,17 +47,21 @@ export default function RootLayout() {
 
   return (
     <ApolloProvider client={client}>
-      <ThemeProvider value={colorScheme === "light" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar
-          style="dark"
-          translucent={false}
-          backgroundColor={colorScheme === "light" ? "black" : "white"}
-        />
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider
+          value={colorScheme === "light" ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar
+            style="dark"
+            translucent={false}
+            backgroundColor={colorScheme === "light" ? "black" : "white"}
+          />
+        </ThemeProvider>
+      </Provider>
     </ApolloProvider>
   );
 }

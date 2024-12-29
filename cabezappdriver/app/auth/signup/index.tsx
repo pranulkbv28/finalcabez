@@ -7,11 +7,12 @@ import {
   View,
 } from "react-native";
 import React, { useEffect } from "react";
-import { router, useNavigation } from "expo-router";
+import { router, useNavigation, useRouter } from "expo-router";
 import cabezLogo from "@/assets/images/cabezLogo.png";
 
 const Index = () => {
   const navigation = useNavigation();
+  // const router = useRouter()
 
   useEffect(() => {
     navigation.setOptions({
@@ -44,6 +45,12 @@ const Index = () => {
           />
           <Pressable style={styles.btn}>
             <Text style={styles.btnText}>Sign Up</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => router.push("/(tabs)/home")}
+            style={styles.btn}
+          >
+            <Text style={styles.btnText}>Go To Home</Text>
           </Pressable>
         </View>
       </View>
