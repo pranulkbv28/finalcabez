@@ -1,8 +1,6 @@
 import {
   StyleSheet,
-  Text,
   SafeAreaView,
-  StatusBar,
   View,
   Image,
 } from "react-native";
@@ -23,27 +21,21 @@ const Index = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Navigate to the (tabs)/home route
-      router.replace("/info/register");
+      router.replace("/home");
     }, 2000);
 
     return () => clearTimeout(timer);
   }, [router]);
 
   return (
-    // <SafeAreaView style={styles.container}>
-    //   <View style={{ marginTop: 200, backgroundColor: "red" }}>
-    //     <Text>index</Text>
-    //   </View>
-    // </SafeAreaView>
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.logoContainer}>
         <Image source={cabezLogo} />
       </View>
       <View style={styles.driverImgContainer}>
         <Image source={driverImg} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -54,7 +54,7 @@ export default function TabLayout() {
   return (
     <View style={styles.container}>
       <Tabs
-        initialRouteName="attendance"
+        initialRouteName="home"
         screenOptions={{
           tabBarActiveTintColor: Colors.light.tint,
           headerShown: false,
@@ -71,7 +71,7 @@ export default function TabLayout() {
           options={{
             title: "Home",
             tabBarIcon: ({ color }) => (
-              <Entypo name="home" size={24} color="black" />
+              <Entypo name="home" size={24} color="orange" />
             ),
           }}
         />
@@ -80,7 +80,7 @@ export default function TabLayout() {
           options={{
             title: "Attendance",
             tabBarIcon: ({ color }) => (
-              <Entypo name="paper-plane" size={24} color="black" />
+              <Entypo name="paper-plane" size={24} color="orange" />
             ),
           }}
         />
@@ -89,7 +89,7 @@ export default function TabLayout() {
           options={{
             title: "My Profile",
             tabBarIcon: ({ color }) => (
-              <FontAwesome6 name="person" size={24} color="black" />
+              <FontAwesome6 name="person" size={24} color="orange" />
             ),
           }}
         />
@@ -98,7 +98,7 @@ export default function TabLayout() {
           options={{
             title: "Contact Us",
             tabBarIcon: ({ color }) => (
-              <Entypo name="phone" size={24} color="black" />
+              <Entypo name="phone" size={24} color="orange" />
             ),
           }}
         />
@@ -109,6 +109,7 @@ export default function TabLayout() {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'orange',
     flex: 1,
   },
   locationContainer: {
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "orange",
     padding: 10,
     borderRadius: 10,
     marginHorizontal: 16,
