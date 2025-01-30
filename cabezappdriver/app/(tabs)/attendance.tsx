@@ -10,29 +10,45 @@ import {
 import axios from 'axios';
 
 export default function HistoryScreen() {
-  const [historyData, setHistoryData] = useState([]);
+  interface HistoryItem {
+    id: number;
+    status: string;
+    startLocation: string;
+    endLocation: string;
+    date: string;
+  }
+
+  const [historyData, setHistoryData] = useState<HistoryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Fetch data from FastAPI
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://your-fastapi-url.com/history'); // Replace with your FastAPI endpoint
-        if (response.data && response.data.length > 0) {
-          setHistoryData(response.data);
-        } else {
-          setHistoryData([]);
-        }
-      } catch (error) {
-        console.error("Error fetching history data:", error);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const dummyData = [
+    {
+      id: 1,
+      status: "Present",
+      startLocation: "Home->",
+      endLocation: "School",
+      date: "2025-01-30",
+    },
+    {
+      id: 2,
+      status: "Present",
+      startLocation: "School->",
+      endLocation: "Home",
+      date: "2025-01-30",
+    },
+    {
+      id: 3,
+      status: "Absent",
+      startLocation: "Home->",
+      endLocation: "School",
+      date: "2025-01-31",
+    },
+  ];
 
-    fetchData();
+  useEffect(() => {
+    setHistoryData(dummyData);
+    setLoading(false);
   }, []);
 
   if (loading) {
@@ -59,12 +75,12 @@ export default function HistoryScreen() {
               key={index}
               style={[
                 styles.card,
-                item.status === "Completed" ? styles.completedCard : styles.canceledCard,
+                item.status === "Present" ? styles.completedCard : styles.canceledCard,
               ]}
             >
               <Text
                 style={
-                  item.status === "Completed"
+                  item.status === "Present"
                     ? styles.completedText
                     : styles.canceledText
                 }
@@ -75,7 +91,6 @@ export default function HistoryScreen() {
                 <Text style={styles.routeText}>{item.startLocation}</Text>
                 <Text style={styles.routeText}>{item.endLocation}</Text>
               </View>
-              <Text style={styles.amount}>₹{item.amount}</Text>
               <Text style={styles.date}>{item.date}</Text>
             </View>
           ))
@@ -146,12 +161,6 @@ const styles = StyleSheet.create({
   routeText: {
     fontSize: 16,
     color: "#333",
-  },
-  amount: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#FF5722",
-    marginBottom: 8,
   },
   date: {
     fontSize: 14,

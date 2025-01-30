@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import { useMutation, gql } from "@apollo/client";
+import customMarkerIcon from "@/assets/images/marker.jpg";
 
 // Define a constant userId
 const USER_ID = "12345678-1234-1234-1234-1234567890ab"; // Replace with your desired constant UUID
@@ -93,9 +94,8 @@ const Home: React.FC = () => {
           }}
           showsUserLocation={true}
         >
-          <Marker
-            coordinate={{ latitude: location.latitude, longitude: location.longitude }}
-            title="Your Location"
+          <Marker coordinate={{ latitude: location.latitude, longitude: location.longitude }} title="Your Location"
+            image={customMarkerIcon}
           />
         </MapView>
       ) : (
